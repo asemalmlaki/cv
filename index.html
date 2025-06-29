@@ -6,6 +6,8 @@
     <title>السيرة الذاتية | عاصم سعيد المالكي</title>
     <meta name="description" content="السيرة الذاتية لعاصم سعيد المالكي، خبير تطوير إداري وتقني متخصص في تحليل البيانات وتحسين أداء العمل.">
     
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%231F3C5F%22></rect><text y=%22.9em%22 font-size=%2280%22 fill=%22%23FFFFFF%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22Tajawal, sans-serif%22>ع</text></svg>">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +37,28 @@
             --shadow-light: 0 8px 30px rgba(0, 0, 0, 0.08); 
 
             --font-ar: 'Tajawal', sans-serif; --font-en: 'Roboto', sans-serif;
+        }
+        ::selection {
+            background-color: var(--accent-blue-dark);
+            color: var(--text-primary-dark);
+        }
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--border-color-dark);
+            border-radius: 10px;
+            border: 3px solid var(--bg-secondary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--accent-blue-dark);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -230,11 +254,34 @@
         }
         body.light-mode .mobile-nav-header h5 { color: var(--text-primary-light); }
         body.light-mode #mobile-settings-buttons { border-color: var(--border-color-light); }
-        body.light-mode #mobile-contact-links a, body.light-mode #mobile-settings-buttons button { color: var(--text-secondary-light); font-family: var(--font-en); }
+        body.light-mode #mobile-contact-links a, body.light-mode #mobile-settings-buttons button { 
+            color: var(--text-secondary-light); 
+        }
         body.light-mode #mobile-contact-links a:hover, body.light-mode #mobile-settings-buttons button:hover { color: var(--accent-blue-light); background-color: rgba(0, 123, 255, 0.05); }
         body.light-mode #mobile-contact-links a i, body.light-mode #mobile-settings-buttons button i { color: var(--accent-blue-light); }
         body.light-mode #mobile-nav-toggle { background-color: var(--bg-secondary-light); }
         
+        /* Back to Top Button Styles */
+        #back-to-top {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            z-index: 998;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        html[dir="ltr"] #back-to-top {
+            left: auto;
+            right: 25px;
+        }
+
         @media (max-width: 1025px) {
             .skills-container { grid-template-columns: 1fr; }
             body { padding: 20px 10px; }
@@ -283,7 +330,7 @@
                 line-height: 1.3;    /* Reduced line height */
             }
             a { text-decoration: none; }
-            .top-buttons, #mobile-nav-toggle, #mobile-nav, #mobile-nav-overlay, .profile-picture, .timeline-item::before, .timeline-duties li::before { display: none !important; }
+            .top-buttons, #mobile-nav-toggle, #mobile-nav, #mobile-nav-overlay, #back-to-top, .profile-picture, .timeline-item::before, .timeline-duties li::before { display: none !important; }
             [data-aos] { transform: none !important; opacity: 1 !important; }
             .cv-wrapper, .timeline { border: none !important; padding: 0 !important; }
             
@@ -388,7 +435,7 @@
                 <img src="55.svg" alt="صورة عاصم المالكي الشخصية" class="profile-picture">
                 <div class="profile-info">
                     <h1 class="profile-name" data-translate-key="name">عاصم سعيد المالكي</h1>
-                    <h2 class="profile-job-title" data-translate-key="jobTitle">خبير تطوير إداري وتقني ومحلل بيانات</h2>
+                    <h2 class="profile-job-title" data-translate-key="jobTitle">خبير تطوير إداري وتقني</h2>
                     <ul class="contact-list">
                       <li><a href="tel:+966502332378"> <span data-translate-key="phone">+966502332378</span> <i class="fas fa-phone-alt"></i></a></li>
                       <li><a href="https://asemai.com/" target="_blank" rel="noopener noreferrer"> <span data-translate-key="website">الموقع الشخصي</span> <i class="fas fa-globe"></i></a></li>
@@ -414,7 +461,7 @@
                     <div class="timeline">
                         <div class="timeline-item">
                             <h4 class="timeline-title" data-translate-key="exp1Company">منشأة حكومية</h4>
-                            <p style="font-style: italic; color: var(--text-secondary-dark);" data-translate-key="exp1Title">خبير تطوير إداري وتقني</p>
+                            <p style="font-style: italic; color: var(--text-secondary-dark);" data-translate-key="exp1Title">خبير تطوير إداري وتقني ومحلل بيانات</p>
                             <span class="timeline-date" data-translate-key="exp1Date">أغسطس ٢٠١٥ - الوقت الحاضر</span>
                             <ul class="timeline-duties">
                                 <li data-translate-key="exp1Duty1">إعادة هيكلة إجراءات قسم "الجاليات" بالكامل، وتقليص مدة إنجاز المعاملات بنسبة 88%.</li>
@@ -511,6 +558,8 @@
     </div>
     <div id="mobile-nav-overlay"></div>
 
+    <a href="#" id="back-to-top" class="icon-btn" title="العودة للأعلى" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -528,6 +577,7 @@
         const mobileNavToggle = document.getElementById('mobile-nav-toggle');
         const mobileNavClose = document.getElementById('mobile-nav-close');
         const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+        const backToTopBtn = document.getElementById('back-to-top');
 
         // --- Translations Object ---
         const translations = {
@@ -660,6 +710,15 @@
         mobileNavToggle?.addEventListener('click', toggleMobileNav);
         mobileNavClose?.addEventListener('click', toggleMobileNav);
         mobileNavOverlay?.addEventListener('click', toggleMobileNav);
+
+        // Back to Top Listener
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn?.classList.add('visible');
+            } else {
+                backToTopBtn?.classList.remove('visible');
+            }
+        });
 
         // After-Print Logic
         if (window.matchMedia) {
