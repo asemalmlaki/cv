@@ -90,10 +90,8 @@
         body.light-mode .cv-wrapper { background-color: var(--bg-secondary-light); border-color: var(--border-color-light); box-shadow: var(--shadow-light); }
         body.light-mode .cv-header { background: var(--header-bg-light); border-color: var(--border-color-light); }
         body.light-mode .profile-name { color: var(--text-primary-light); }
-        body.light-mode .profile-job-title { color: var(--accent-blue-light); }
         body.light-mode .contact-list a { color: var(--text-secondary-light); }
-        body.light-mode .contact-list i { color: var(--accent-blue-light); }
-        body.light-mode .contact-list a:hover { color: var(--accent-blue-light); background-color: rgba(0, 123, 255, 0.05); }
+        body.light-mode .contact-list a:hover { background-color: rgba(0, 123, 255, 0.05); }
         body.light-mode .section-title { color: var(--accent-blue-light); }
         body.light-mode .section-content p, body.light-mode .section-content li { color: var(--text-secondary-light); }
         body.light-mode .timeline { border-color: var(--border-color-light); }
@@ -103,7 +101,6 @@
         body.light-mode .timeline-duties li::before { color: var(--accent-blue-light); }
         body.light-mode .timeline-duties li:hover, body.light-mode .skills-list li:hover { color: var(--accent-blue-light); }
         body.light-mode .skill-category h4 { color: var(--text-primary-light); border-color: var(--border-color-light); }
-        body.light-mode .skills-list i { color: var(--accent-blue-light); }
         body.light-mode .icon-btn { border-color: var(--border-color-light); color: var(--text-secondary-light); }
         body.light-mode .icon-btn:hover { color: var(--accent-blue-light); border-color: var(--accent-blue-light); }
         .cv-header { text-align: center; margin: -40px -40px 40px -40px; padding: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border-color-dark); border-radius: 12px 12px 0 0; background: var(--header-bg-dark); transition: all 0.3s ease; }
@@ -120,7 +117,7 @@
         .profile-picture.loaded { opacity: 1; }
         .profile-picture:hover { transform: scale(1.05); border: 1px solid silver; }
         .profile-name { font-weight: 800; font-size: 2.7rem; color: #fff; letter-spacing: 1px; margin-bottom: 5px; transition: color 0.3s ease; }
-        .profile-job-title { font-size: 1.3rem; color: var(--accent-blue-dark); font-weight: 500; margin-bottom: 20px; transition: color 0.3s ease; min-height: 2rem; }
+        .profile-job-title { font-size: 1.3rem; font-weight: 500; margin-bottom: 20px; transition: color 0.3s ease; min-height: 2rem; }
         .contact-list { list-style: none; display: flex; justify-content: center; flex-wrap: nowrap; gap: 10px; padding: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .contact-list::-webkit-scrollbar { display: none; }
         html[dir="ltr"] .contact-list { justify-content: center; }
@@ -133,14 +130,38 @@
         }
         html[dir="ltr"] .contact-list a { flex-direction: row; }
         html[dir="rtl"] .contact-list a { flex-direction: row-reverse; }
-        .contact-list a:hover { color: var(--accent-blue-dark); background-color: rgba(0, 191, 255, 0.05); transform: scale(1.02); }
-        .contact-list i { font-size: 1.2rem; color: var(--accent-blue-dark); transition: color 0.3s ease; }
-        .contact-list a:hover i { color: inherit; }
+        .contact-list a:hover { background-color: rgba(0, 191, 255, 0.05); transform: scale(1.02); }
+        .contact-list i { font-size: 1.2rem;  transition: color 0.3s ease; }
+        
+        /* --- Social Icon Colors --- */
+        .contact-list a[href*="linkedin.com"] i { color: #0A66C2; }
+        .contact-list a[href*="linkedin.com"]:hover { color: #0A66C2; }
+        .contact-list a[href*="wa.me"] i,
+        .contact-list a[href^="tel:"] i { color: #25D366; }
+        .contact-list a[href*="wa.me"]:hover,
+        .contact-list a[href^="tel:"]:hover { color: #25D366; }
+        .contact-list a[href*="asemai.com"] i { color: #6a0dad; }
+        .contact-list a[href*="asemai.com"]:hover { color: #6a0dad; }
+        .contact-list a[href^="mailto:"] i { color: #EA4335; }
+        .contact-list a[href^="mailto:"]:hover { color: #EA4335; }
+        
+        /* --- Job Title Animation --- */
+        @keyframes jobTitleColorDark {
+            0%   { color: #0070c0; } 25%  { color: #00bfff; } 50%  { color: #ffffff; } 75%  { color: #00bfff; } 100% { color: #0070c0; }
+        }
+        @keyframes jobTitleColorLight {
+            0%   { color: var(--accent-blue-light); } 25%  { color: #005f9c; } 50%  { color: #343A40; } 75%  { color: #005f9c; } 100% { color: var(--accent-blue-light); }
+        }
+        .profile-job-title span { animation: jobTitleColorDark 5s infinite; }
+        body.light-mode .profile-job-title span { animation-name: jobTitleColorLight; }
+
         .cv-section { margin-bottom: 35px; }
+        #summary-section, #experience-section, #education-section, #skills-section, #courses-section { scroll-margin-top: 20px; }
         .section-title { font-weight: 700; font-size: 1.8rem; color: var(--accent-blue-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; transition: color 0.3s ease; }
         .section-title i { font-size: 1.6rem; }
         .section-content p, .section-content li { color: var(--text-secondary-dark); font-size: 1rem; transition: color 0.3s ease; }
-        .section-content p .fas.fa-university { margin-inline-end: 5px; }
+        .entity-info { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; }
+        .entity-logo { width: 60px; height: 60px; object-fit: contain; }
         .timeline-duties li, .skills-list li { transition: transform 0.3s ease, color 0.3s ease; }
         .timeline-duties li:hover, .skills-list li:hover { transform: translateX(-5px); color: var(--accent-blue-dark); }
         html[dir="ltr"] .timeline-duties li:hover, html[dir="ltr"] .skills-list li:hover { transform: translateX(5px); }
@@ -150,7 +171,7 @@
         .timeline-item:last-child { margin-bottom: 0; }
         .timeline-item::before { content: ''; position: absolute; top: 5px; right: -14.5px; width: 11px; height: 11px; background-color: var(--accent-blue-dark); border-radius: 50%; border: 3px solid var(--bg-secondary-dark); transition: all 0.3s ease; }
         html[dir="ltr"] .timeline-item::before { right: auto; left: -14.5px; }
-        .timeline-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary-dark); margin-bottom: 3px; transition: color 0.3s ease; }
+        .timeline-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary-dark); margin-bottom: 0; transition: color 0.3s ease; }
         .timeline-date { color: var(--accent-blue-dark); font-size: 0.9rem; margin-bottom: 10px; display: block; transition: color 0.3s ease; }
         .timeline-duties { list-style-type: none; padding-right: 15px; }
         html[dir="ltr"] .timeline-duties { padding-right: 0; padding-left: 15px; }
@@ -162,10 +183,22 @@
         .skill-category h4 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary-dark); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color-dark); transition: color 0.3s ease, border-color 0.3s ease; }
         .skills-list { list-style: none; padding: 0;}
         .skills-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .skills-list i { color: var(--accent-blue-dark); transition: all 0.3s ease; }
-        .skills-list li:hover i { transform: scale(1.2) rotate(15deg); }
+        .skill-icon {
+            width: 24px; height: 24px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .skills-list .fa-icon { font-size: 1.2rem; width: 24px; text-align: center; } /* For fallback icons */
+        .skills-list li:hover .skill-icon { transform: scale(1.2) rotate(10deg); }
+        li:has(span[data-translate-key="skill5"]) .fa-icon { color: #FFD700; }
+        li:has(span[data-translate-key="skill6"]) .fa-icon { color: #C55FFC; }
+        li:has(span[data-translate-key="skill7"]) .fa-icon { color: #28A745; }
+        li:has(span[data-translate-key="skill8"]) .fa-icon { color: #17A2B8; }
+        li:has(span[data-translate-key="skillDev"]) .fa-icon { color: #FD7E14; }
+
+        /* Mobile Nav */
         #mobile-nav-toggle { display: none; position: fixed; top: 20px; left: 20px; z-index: 999; background-color: var(--bg-secondary-dark); border-radius: 8px; }
-        #mobile-nav { position: fixed; top: 0; right: -320px; width: 300px; max-width: 90%; height: 100%; z-index: 1001; transition: right 0.4s ease-in-out; padding: 20px; display: flex; flex-direction: column; gap: 20px; background-color: rgba(26, 26, 26, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-left: 1px solid var(--border-color-dark); }
+        #mobile-nav { position: fixed; top: 0; right: -320px; width: 300px; max-width: 90%; height: 100%; z-index: 1001; transition: right 0.4s ease-in-out; padding: 20px; display: flex; flex-direction: column; gap: 20px; background-color: rgba(26, 26, 26, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-left: 1px solid var(--border-color-dark); overflow-y: auto; }
         html[dir="ltr"] #mobile-nav { right: auto; left: -320px; transition: left 0.4s ease-in-out; border-left: none; border-right: 1px solid var(--border-color-dark); }
         body.mobile-nav-active #mobile-nav { right: 0; }
         html[dir="ltr"] body.mobile-nav-active #mobile-nav { left: 0; }
@@ -174,18 +207,28 @@
         .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; }
         .mobile-nav-header h5 { font-size: 1.2rem; color: var(--text-primary-dark); }
         #mobile-nav-close { background: none; border: none; font-size: 1.5rem; padding: 0; width: auto; height: auto; }
-        #mobile-contact-links, #mobile-settings-buttons { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-        #mobile-contact-links a, #mobile-settings-buttons button { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-secondary-dark); padding: 10px; border-radius: 5px; transition: all 0.3s ease; background: none; border: none; width: 100%; font-size: 1rem; font-family: var(--font-ar); flex-direction: row; }
-        #mobile-settings-buttons { border-top: 1px solid var(--border-color-dark); padding-top: 20px; }
-        #mobile-contact-links a:hover, #mobile-settings-buttons button:hover { background-color: rgba(0, 191, 255, 0.05); color: var(--accent-blue-dark); }
-        #mobile-contact-links a i, #mobile-settings-buttons button i { font-size: 1.2rem; color: var(--accent-blue-dark); width: 20px; }
+        #mobile-contact-links, #mobile-settings-buttons, #mobile-sections-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+        #mobile-contact-links a, #mobile-settings-buttons button, #mobile-sections-links a, .accordion-header button { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-secondary-dark); padding: 10px; border-radius: 5px; transition: all 0.3s ease; background: none; border: none; width: 100%; font-size: 1rem; font-family: var(--font-ar); flex-direction: row; text-align: right;}
+        html[dir="ltr"] #mobile-contact-links a, html[dir="ltr"] #mobile-settings-buttons button, html[dir="ltr"] #mobile-sections-links a, html[dir="ltr"] .accordion-header button { text-align: left; }
+        #mobile-settings-buttons, #mobile-sections-links { border-top: 1px solid var(--border-color-dark); padding-top: 20px; }
+        #mobile-contact-links a:hover, #mobile-settings-buttons button:hover, #mobile-sections-links a:hover, .accordion-header button:hover { background-color: rgba(0, 191, 255, 0.05); color: var(--accent-blue-dark); }
+        #mobile-contact-links a i, #mobile-settings-buttons button i, #mobile-sections-links a i, .accordion-header button i { font-size: 1.2rem; color: var(--accent-blue-dark); width: 20px; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; background-color: rgba(0,0,0,0.1); border-radius: 5px; margin-top: 5px; }
+        .accordion-content ul { list-style: none; padding: 0; margin: 0; }
+        .accordion-content a { padding-right: 30px; }
+        html[dir="ltr"] .accordion-content a { padding-left: 30px; }
+        .accordion-header button .fa-chevron-down { transition: transform 0.3s ease; }
+        .accordion-header button.active .fa-chevron-down { transform: rotate(180deg); }
+        
         body.light-mode #mobile-nav { background-color: rgba(255, 255, 255, 0.7); border-color: var(--border-color-light); }
         body.light-mode .mobile-nav-header h5 { color: var(--text-primary-light); }
-        body.light-mode #mobile-settings-buttons { border-color: var(--border-color-light); }
-        body.light-mode #mobile-contact-links a, body.light-mode #mobile-settings-buttons button { color: var(--text-secondary-light); }
-        body.light-mode #mobile-contact-links a:hover, body.light-mode #mobile-settings-buttons button:hover { color: var(--accent-blue-light); background-color: rgba(0, 123, 255, 0.05); }
-        body.light-mode #mobile-contact-links a i, body.light-mode #mobile-settings-buttons button i { color: var(--accent-blue-light); }
+        body.light-mode #mobile-settings-buttons, body.light-mode #mobile-sections-links { border-color: var(--border-color-light); }
+        body.light-mode #mobile-contact-links a, body.light-mode #mobile-settings-buttons button, body.light-mode #mobile-sections-links a, body.light-mode .accordion-header button { color: var(--text-secondary-light); }
+        body.light-mode #mobile-contact-links a:hover, body.light-mode #mobile-settings-buttons button:hover, body.light-mode #mobile-sections-links a:hover, body.light-mode .accordion-header button:hover { color: var(--accent-blue-light); background-color: rgba(0, 123, 255, 0.05); }
+        body.light-mode #mobile-contact-links a i, body.light-mode #mobile-settings-buttons button i, body.light-mode #mobile-sections-links a i, body.light-mode .accordion-header button i { color: var(--accent-blue-light); }
         body.light-mode #mobile-nav-toggle { background-color: var(--bg-secondary-light); }
+        
+        /* Utility */
         #back-to-top { position: fixed; bottom: 25px; left: 25px; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; z-index: 998; }
         #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
         html[dir="ltr"] #back-to-top { left: auto; right: 25px; }
@@ -208,47 +251,17 @@
         
         /* Loader styles */
         .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-primary-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            opacity: 1;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-primary-dark);
+            display: flex; justify-content: center; align-items: center; z-index: 10000; opacity: 1; transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         body.light-mode .loader-container { background-color: var(--bg-primary-light); }
-        .loader-container.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .profile-pic-loader {
-            position: absolute;
-            background-color: var(--bg-secondary-dark); /* Match the card background */
-            border-radius: 7px;
-            z-index: 1; /* Above image placeholder */
-        }
+        .loader-container.hidden { opacity: 0; visibility: hidden; }
+        .profile-pic-loader { position: absolute; background-color: var(--bg-secondary-dark); border-radius: 7px; z-index: 1; }
         body.light-mode .profile-pic-loader { background-color: var(--bg-secondary-light); }
-        .loader {
-            position: relative;
-            width: 2.5em;
-            height: 2.5em;
-            transform: rotate(165deg);
-        }
+        .loader { position: relative; width: 2.5em; height: 2.5em; transform: rotate(165deg); }
         .loader:before, .loader:after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            display: block;
-            width: 0.5em;
-            height: 0.5em;
-            border-radius: 0.25em;
-            transform: translate(-50%, -50%);
+            content: ""; position: absolute; top: 50%; left: 50%; display: block;
+            width: 0.5em; height: 0.5em; border-radius: 0.25em; transform: translate(-50%, -50%);
         }
         .loader:before { animation: before8 2s infinite; }
         .loader:after { animation: after6 2s infinite; }
@@ -302,35 +315,25 @@
             * { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; transition: none !important; letter-spacing: normal !important; }
             body { font-size: 9pt; line-height: 1.3; }
             a { text-decoration: none; }
-            .top-buttons, #mobile-nav-toggle, #mobile-nav, #mobile-nav-overlay, #back-to-top, .profile-picture-container, .timeline-item::before, .timeline-duties li::before, #progress-bar, #imageModal, .cursor, .loader-container { display: none !important; }
+            .top-buttons, #mobile-nav-toggle, #mobile-nav, #mobile-nav-overlay, #back-to-top, .profile-picture-container, .timeline-item::before, .timeline-duties li::before, #progress-bar, #imageModal, .cursor, .loader-container, .entity-logo, .skill-icon { display: none !important; }
             [data-aos] { transform: none !important; opacity: 1 !important; }
             .cv-wrapper, .timeline { border: none !important; padding: 0 !important; }
             .cv-header { text-align: center; padding: 0 0 6px 0 !important; margin: 0 0 10px 0 !important; border-bottom: 1px solid #888 !important; }
             .cv-header-content, .profile-info, html[dir="rtl"] .profile-info { align-items: center !important; width: 100%; }
             .profile-info { text-align: center !important; }
             .profile-name { font-size: 19pt !important; margin-bottom: 1px !important; }
-            .profile-job-title { font-size: 11pt !important; margin-bottom: 6px !important; }
+            .profile-job-title { font-size: 11pt !important; margin-bottom: 6px !important; animation: none !important; }
             .cv-header .contact-list { justify-content: center !important; gap: 10px 20px !important; display: flex !important; align-items: center; }
-            
-            .contact-list a[href^="https://wa.me/"] {
-                display: none !important;
-            }
-            
+            .contact-list a[href^="https://wa.me/"] { display: none !important; }
             .contact-list span[data-translate-key] { font-size: 0; }
             .contact-list span[data-translate-key]::after { font-size: 9pt; }
-            .contact-list a i {
-                display: inline-block !important;
-                font-size: 8.5pt !important;
-                vertical-align: middle;
-            }
+            .contact-list a i { display: inline-block !important; font-size: 8.5pt !important; vertical-align: middle; }
             html[dir="rtl"] .contact-list a i { margin-left: 4px; }
             html[dir="ltr"] .contact-list a i { margin-right: 4px; }
-            
             .contact-list span[data-translate-key="phone"]::after { content: "0502332378"; }
             .contact-list span[data-translate-key="website"]::after { content: "asemai.com"; }
             .contact-list span[data-translate-key="email"]::after { content: "asem1almalki@gmail.com"; }
             .contact-list span[data-translate-key="linkedin"]::after { content: "Asem Almalki"; }
-
             .cv-section { margin-bottom: 10px !important; page-break-inside: avoid; }
             .section-title { font-size: 12.5pt; font-weight: bold; padding-bottom: 3px; margin-bottom: 6px; border-color: #ccc; }
             .timeline-item { margin-bottom: 8px; }
@@ -390,20 +393,25 @@
         </header>
 
         <main>
-            <section class="cv-section" data-aos="fade-up">
+            <section id="summary-section" class="cv-section" data-aos="fade-up">
                 <h3 class="section-title"><i class="fas fa-address-card"></i> <span data-translate-key="summaryTitle">نبذة تعريفية</span></h3>
                 <div class="section-content">
                     <p data-translate-key="summaryText">خبير تطوير إداري وتقني يمتلك خبرة واسعة تمتد لأكثر من 9 سنوات في تحليل البيانات وأتمتة الإجراءات لدعم القرارات الاستراتيجية. متخصص في استخدام أدوات Microsoft Power Platform لتحويل البيانات إلى رؤى قابلة للتنفيذ، ونجح في إعادة هيكلة إجراءات العمل مما أدى إلى تقليص مدة الإنجاز بنسبة 88%.</p>
                 </div>
             </section>
 
-            <section class="cv-section" data-aos="fade-up">
+            <section id="experience-section" class="cv-section" data-aos="fade-up">
                 <h3 class="section-title"><i class="fas fa-briefcase"></i> <span data-translate-key="experienceTitle">الخبرة العملية</span></h3>
                 <div class="section-content">
                     <div class="timeline">
                         <div class="timeline-item">
-                            <h4 class="timeline-title" data-translate-key="exp1Company">منشأة حكومية</h4>
-                            <p style="font-style: italic; color: var(--text-secondary-dark);" data-translate-key="exp1Title">خبير تطوير إداري وتقني ومحلل بيانات</p>
+                            <div class="entity-info">
+                                <img src="ASLM.svg" alt="شعار وزارة الشؤون الإسلامية" class="entity-logo">
+                                <div>
+                                    <h4 class="timeline-title" data-translate-key="exp1Company">وزارة الشؤون الإسلامية والدعوة والإرشاد</h4>
+                                    <p style="font-style: italic; color: var(--text-secondary-dark); margin-bottom: 0;" data-translate-key="exp1Title">خبير تطوير إداري وتقني ومحلل بيانات</p>
+                                </div>
+                            </div>
                             <span class="timeline-date" data-translate-key="exp1Date">أغسطس ٢٠١٥ - الوقت الحاضر</span>
                             <ul class="timeline-duties">
                                 <li data-translate-key="exp1Duty1">إعادة هيكلة إجراءات قسم "الجاليات" بالكامل، وتقليص مدة إنجاز المعاملات بنسبة 88%.</li>
@@ -416,54 +424,66 @@
                 </div>
             </section>
             
-            <section class="cv-section" data-aos="fade-up">
+            <section id="education-section" class="cv-section" data-aos="fade-up">
                 <h3 class="section-title"><i class="fas fa-graduation-cap"></i> <span data-translate-key="educationTitle">المؤهل العلمي</span></h3>
                 <div class="section-content">
                      <div class="timeline">
                         <div class="timeline-item">
-                            <h4 class="timeline-title" data-translate-key="edu1Degree">البكالوريوس في العلوم الإدارية</h4>
+                             <div class="entity-info">
+                                <img src="شعار جامعة الملك عبدالعزيز – SVG.svg" alt="شعار جامعة الملك عبدالعزيز" class="entity-logo">
+                                <div>
+                                    <h4 class="timeline-title" data-translate-key="edu1Degree">البكالوريوس في العلوم الإدارية</h4>
+                                    <p style="color: var(--text-secondary-dark); margin-bottom: 0;" data-translate-key="edu1University">جامعة الملك عبد العزيز / كلية الاقتصاد والإدارة</p>
+                                </div>
+                            </div>
                             <span class="timeline-date" data-translate-key="edu1Date">٢٠١٥ - ٢٠١٩</span>
-                            <p data-translate-key="edu1University"><i class="fas fa-university"></i> جامعة الملك عبد العزيز / كلية الاقتصاد والإدارة </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="cv-section" data-aos="fade-up">
+            <section id="skills-section" class="cv-section" data-aos="fade-up">
                 <h3 class="section-title"><i class="fas fa-cogs"></i> <span data-translate-key="skillsTitle">المهارات</span></h3>
                 <div class="section-content">
                     <div class="skills-container">
                         <div class="skill-category">
                             <h4 data-translate-key="skillsCat1"><i class="fas fa-chart-line"></i> المهارات التقنية</h4>
                             <ul class="skills-list">
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill1">Microsoft Power Platform (Power BI, Power Automate)</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill2">Microsoft Office Suite (Excel, PowerPoint, Word)</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill3">HTML / CSS / JS</span></li>
-                                <li><i class="fas fa-check"></i> <span>Visual Studio Code</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill4">إدارة قواعد البيانات</span></li>
+                                <li><img src="power-bi-icon.svg" class="skill-icon" alt="Power BI Icon"> <span data-translate-key="skillBI">Power BI</span></li>
+                                <li><img src="Microsoft_Power_Automate.svg" class="skill-icon" alt="Power Automate Icon"> <span data-translate-key="skillAutomate">Power Automate</span></li>
+                                <li><img src="DAX_logo.svg" class="skill-icon" alt="DAX Language Icon"> <span data-translate-key="skillDax">power bi DAX</span></li>
+                                <li><img src="microsoft-excel-icon.svg" class="skill-icon" alt="Excel Icon"> <span data-translate-key="skillExcel">Excel</span></li>
+                                <li><img src="microsoft-powerpoint-icon.svg" class="skill-icon" alt="PowerPoint Icon"> <span data-translate-key="skillPowerPoint">PowerPoint</span></li>
+                                <li><img src="microsoft-word-icon.svg" class="skill-icon" alt="Word Icon"> <span data-translate-key="skillWord">Word</span></li>
+                                <li><img src="office-2.svg" class="skill-icon" alt="Microsoft Office Icon"> <span data-translate-key="skillOffice">Microsoft Office Suite</span></li>
+                                <li><img src="visual-studio-code-icon.svg" class="skill-icon" alt="VS Code Icon"> <span data-translate-key="skillVSCode">Visual Studio Code</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-database" style="color: #A8A8A8;"></i> <span data-translate-key="skillDB">إدارة قواعد البيانات</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-code" style="color: #E34F26;"></i> <span data-translate-key="skillWeb">HTML / CSS / JS</span></li>
                             </ul>
                         </div>
                         <div class="skill-category">
                             <h4 data-translate-key="skillsCat2"><i class="fas fa-star"></i> المهارات الشخصية</h4>
                             <ul class="skills-list">
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill5">الابتكار وحل المشكلات</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill6">التفكير التحليلي</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill7">التنظيم وإدارة المهام</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="skill8">التواصل الفعال</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-lightbulb"></i> <span data-translate-key="skill5">الابتكار وحل المشكلات</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-brain"></i> <span data-translate-key="skill6">التفكير التحليلي</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-tasks"></i> <span data-translate-key="skill7">التنظيم وإدارة المهام</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-users"></i> <span data-translate-key="skill8">التواصل الفعال</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-rocket"></i> <span data-translate-key="skillDev">التطوير</span></li>
+                                <li><img src="online-survey.png" class="skill-icon" alt="Interactive Reports Icon"> <span data-translate-key="skillReports">تقارير تفاعلية</span></li>
                             </ul>
                         </div>
                         <div class="skill-category">
                             <h4 data-translate-key="skillsCat3"><i class="fas fa-globe"></i> اللغات</h4>
                             <ul class="skills-list">
-                                <li><i class="fas fa-check"></i> <span data-translate-key="lang1">العربية (اللغة الأم)</span></li>
-                                <li><i class="fas fa-check"></i> <span data-translate-key="lang2">الإنجليزية</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-check"></i> <span data-translate-key="lang1">العربية (اللغة الأم)</span></li>
+                                <li><i class="skill-icon fa-icon fas fa-check"></i> <span data-translate-key="lang2">الإنجليزية</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="cv-section" data-aos="fade-up">
+            <section id="courses-section" class="cv-section" data-aos="fade-up">
                 <h3 class="section-title"><i class="fas fa-certificate"></i> <span data-translate-key="coursesTitle">الشهادات والدورات</span></h3>
                 <div class="section-content">
                     <ul class="timeline-duties">
@@ -484,6 +504,27 @@
             <button type="button" id="mobile-nav-close" class="icon-btn"><i class="fas fa-times"></i></button>
         </div>
         
+        <div id="mobile-sections-links">
+             <div class="accordion-item">
+                <div class="accordion-header">
+                    <button type="button" class="accordion-button" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                        <span data-translate-key="shortcutsTitle">اختصارات الوصول</span>
+                        <i class="fas fa-chevron-down" style="margin-right: auto;"></i>
+                    </button>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#summary-section"><i class="fas fa-address-card"></i><span data-translate-key="summaryTitle">نبذة تعريفية</span></a></li>
+                        <li><a href="#experience-section"><i class="fas fa-briefcase"></i><span data-translate-key="experienceTitle">الخبرة العملية</span></a></li>
+                        <li><a href="#education-section"><i class="fas fa-graduation-cap"></i><span data-translate-key="educationTitle">المؤهل العلمي</span></a></li>
+                        <li><a href="#skills-section"><i class="fas fa-cogs"></i><span data-translate-key="skillsTitle">المهارات</span></a></li>
+                        <li><a href="#courses-section"><i class="fas fa-certificate"></i><span data-translate-key="coursesTitle">الشهادات والدورات</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <ul id="mobile-contact-links">
             <li><a href="https://asemai.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i><span data-translate-key="website">الموقع الشخصي</span></a></li>
             <li><a href="tel:+966502332378"><i class="fas fa-phone-alt"></i><span data-translate-key="phone">+966502332378</span></a></li>
@@ -534,6 +575,7 @@
             const imageModal = document.getElementById('imageModal');
             const profilePicTrigger = document.getElementById('profile-pic-trigger');
             const modalCloseBtn = document.querySelector('.modal-close-btn');
+            const accordionBtn = document.querySelector('.accordion-button');
             
             const pageLoader = document.getElementById('page-loader');
             const profilePicLoader = document.getElementById('profile-pic-loader');
@@ -566,28 +608,36 @@
                 summaryTitle: { ar: 'نبذة تعريفية', en: 'Professional Summary' },
                 summaryText: { ar: 'خبير تطوير إداري بخبرة +9 سنوات، أعمل على تحسين الكفاءة التشغيلية عبر تحليل البيانات وأتمتة العمل. نجحت في قيادة مبادرة أدت لتقليص زمن الإنجاز بنسبة تجاوزت 80%.', en: 'A management development expert with over 9 years of experience, I work to improve operational efficiency through data analysis and workflow automation. I successfully led an initiative that reduced turnaround time by over 80%.' },
                 experienceTitle: { ar: 'الخبرة العملية', en: 'Work Experience' },
-                exp1Company: { ar: 'منشأة حكومية', en: 'Government Entity' },
+                exp1Company: { ar: 'وزارة الشؤون الإسلامية والدعوة والإرشاد', en: 'Ministry of Islamic Affairs, Dawah, and Guidance' },
                 exp1Title: { ar: 'خبير تطوير إداري وتقني ومحلل بيانات', en: 'Administrative & Technical Development Expert and Data Analyst' },
                 exp1Date: { ar: 'أغسطس ٢٠١٥ - الوقت الحاضر', en: 'August 2015 - Present' },
-                exp1Duty1: { ar: 'إعادة هيكلة إجراءات قسم "الجاليات" بالكامل، وتقليص مدة إنجاز المعاملات بنسبة 88%.', en: 'Completely restructured the "Communities" department procedures, reducing transaction processing time by 88%.' },
+                exp1Duty1: { ar: 'أعدتُ هيكلة الإجراءات بشكل كامل، وحققتُ تقليصاً في مدة إنجاز المعاملات وصل إلى 88%.', en: 'I completely restructured the procedures and achieved a reduction in transaction processing time by 88%.' },
                 exp1Duty2: { ar: 'بناء نظام مؤتمت بـ Excel و Power BI لإنشاء لوحات بيانات تفاعلية تدعم اتخاذ القرار.', en: 'Built an automated system using Excel and Power BI to create interactive dashboards for decision support.' },
                 exp1Duty3: { ar: 'بناء قاعدة بيانات ومنصة إلكترونية للجنة حكومية مشتركة، مما ساهم في تحسين آلية عملها المتعثرة.', en: 'Built a database and an electronic platform for a joint governmental committee, helping to improve its struggling workflow.' },
                 exp1Duty4: { ar: 'كفاءة عالية في إدارة مهام متعددة، حظيت بتقدير وتوصية من الإدارة المباشرة.', en: 'High efficiency in managing multiple tasks, earning appreciation and a recommendation from direct management.' },
                 educationTitle: { ar: 'المؤهل العلمي', en: 'Education' },
                 edu1Degree: { ar: 'البكالوريوس في العلوم الإدارية', en: 'Bachelor of Administrative Sciences' },
                 edu1Date: { ar: '٢٠١٥ - ٢٠١٩', en: '2015 - 2019' },
-                edu1University: { ar: '<i class="fas fa-university"></i> جامعة الملك عبد العزيز / كلية الاقتصاد والإدارة', en: '<i class="fas fa-university"></i> King Abdulaziz University / Faculty of Economics and Administration' },
+                edu1University: { ar: 'جامعة الملك عبد العزيز / كلية الاقتصاد والإدارة', en: 'King Abdulaziz University / Faculty of Economics and Administration' },
                 skillsTitle: { ar: 'المهارات', en: 'Skills' },
                 skillsCat1: { ar: '<i class="fas fa-chart-line"></i> المهارات التقنية', en: 'Technical Skills' },
-                skill1: { ar: 'Microsoft Power Platform (Power BI, Power Automate)', en: 'Microsoft Power Platform (Power BI, Power Automate)' },
-                skill2: { ar: 'Microsoft Office Suite (Excel, PowerPoint, Word)', en: 'Microsoft Office Suite (Excel, PowerPoint, Word)' },
-                skill3: { ar: 'HTML / CSS / JS', en: 'HTML / CSS / JS' },
-                skill4: { ar: 'إدارة قواعد البيانات', en: 'Database Management' },
+                skillBI: { ar: 'Power BI', en: 'Power BI' },
+                skillAutomate: { ar: 'Power Automate', en: 'Power Automate' },
+                skillOffice: { ar: 'Microsoft Office Suite', en: 'Microsoft Office Suite' },
+                skillDax: { ar: 'power bi DAX', en: 'Power BI DAX' },
+                skillWeb: { ar: 'HTML / CSS / JS', en: 'HTML / CSS / JS' },
+                skillVSCode: { ar: 'Visual Studio Code', en: 'Visual Studio Code'},
+                skillDB: { ar: 'إدارة قواعد البيانات', en: 'Database Management' },
+                skillExcel: { ar: 'Excel', en: 'Excel' },
+                skillPowerPoint: { ar: 'PowerPoint', en: 'PowerPoint' },
+                skillWord: { ar: 'Word', en: 'Word' },
                 skillsCat2: { ar: '<i class="fas fa-star"></i> المهارات الشخصية', en: 'Soft Skills' },
                 skill5: { ar: 'الابتكار وحل المشكلات', en: 'Innovation & Problem-Solving' },
                 skill6: { ar: 'التفكير التحليلي', en: 'Analytical Thinking' },
                 skill7: { ar: 'التنظيم وإدارة المهام', en: 'Organization & Task Management' },
                 skill8: { ar: 'التواصل الفعال', en: 'Effective Communication' },
+                skillDev: { ar: 'التطوير', en: 'Development' },
+                skillReports: { ar: 'تقارير تفاعلية', en: 'Interactive Reports' },
                 skillsCat3: { ar: '<i class="fas fa-globe"></i> اللغات', en: 'Languages' },
                 lang1: { ar: 'العربية (اللغة الأم)', en: 'Arabic (Native)' },
                 lang2: { ar: 'الإنجليزية', en: 'English' },
@@ -598,6 +648,7 @@
                 course4: { ar: 'دورة في الابتكار الرقمي من معهد الإدارة العامة', en: 'Course in Digital Innovation from the Institute of Public Administration' },
                 course5: { ar: 'دورة تطوير مهارات الإرشاد الفعال', en: 'Course on developing effective counseling skills' },
                 menuTitle: { ar: 'القائمة', en: 'Menu' },
+                shortcutsTitle: { ar: 'اختصارات الوصول', en: 'Shortcuts'},
                 themeTitle: { ar: 'تبديل الوضع', en: 'Toggle Theme' },
                 langTitle: { ar: 'تغيير اللغة', en: 'Change Language' },
                 printTitle: { ar: 'طباعة', en: 'Print' },
@@ -736,6 +787,30 @@
                     mobileNavToggle.focus();
                 }
             }
+
+            // --- Accordion ---
+            if (accordionBtn) {
+                accordionBtn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.setAttribute('aria-expanded', this.classList.contains('active'));
+                    const content = this.closest('.accordion-header').nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+
+            // Event listener for section links to close nav on click
+            document.querySelectorAll('#mobile-sections-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                   if (body.classList.contains('mobile-nav-active')) {
+                       toggleMobileNav();
+                   }
+                });
+            });
+
 
             // --- Event Listeners ---
             [themeToggle, themeToggleMobile].forEach(btn => btn?.addEventListener('click', handleThemeToggle));
